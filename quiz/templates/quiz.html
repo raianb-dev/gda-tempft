@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz Nicho Hot</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background-color: #f4f4f4;
+      flex-direction: column;
+    }
+    .progress-bar-container {
+      width: 100%;
+      height: 20px;
+      background-color: #f4f4f4;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 10%; /* Inicial em 10% */
+      background-color: greenyellow;
+      transition: width 0.5s ease;
+      border-bottom: 1px #ccc solid ;
+    }
+    .container {
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      background: white;
+      padding: 5%;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .headline {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .image {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+    .button-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 20px;
+    }
+    button {
+      padding: 15px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background-color: black;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #ddd;
+    }
+    .special {
+      background-color: #f56565;
+      color: white;
+    }
+    .special:hover {
+      background-color: #e53e3e;
+    }
+    .hidden {
+      display: none;
+    }
+    .image-container {
+        position: relative;
+        display: inline-block;
+      }
+      
+      .image-container img {
+        filter: blur(3px);
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      
+      .image-container::after {
+        font-size: 3rem;
+        color: rgba(0, 0, 0, 0.7); /* Cor semi-transparente */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 1;
+      }
+      
+  </style>
+</head>
+<body>
+  <div class="progress-bar-container">
+    <div id="stepProgressBar" class="progress-bar"></div>
+  </div>
+
+  <div id="quiz" class="container">
+    <!-- Tela 1 -->
+    <div id="screen1" class="screen">
+      <h1 class="headline">Bem-vindo ao <span style="color: red;">VISION RAIO-X</span></h1>
+      <span>Agora você pode <span style="color: red;">remover a roupa</span> de qualquer mulher (+18)! Você tem <span style="color: red;">03 testes grátis</span> para começar!</span>
+      <br><br>
+      <img src="https://cdn.xquiz.co/images/0ebb0bb8-d04e-4daa-b2c4-6ae7b409c659" alt="Imagem 1" class="image">
+      <div class="button-group">
+        <button  onclick="nextScreen('response1', 20)">Continuar</button>
+      </div>
+    </div>
+
+    <!-- Resposta 1 -->
+    <div id="response1" class="screen hidden">
+      <h1 class="headline">Vamos começar.</h1>
+      <span>Essa é atriz Juliana Ferreira, como você deseja ver ela?</span>
+      <br><br>
+
+      <img src="https://cdn.xquiz.co/images/1ca6a1e8-d209-45c5-b333-720b82b09c41" alt="Imagem Resposta 1" class="image">
+    
+      <div class="button-group">
+        <button onclick="nextScreen('screen2', 40)">Remover roupas</button>
+      </div>
+    </div>
+
+    <!-- Tela 2 -->
+    <div id="screen2" class="screen hidden">
+      <h1 class="headline">Aqui está:</h1>
+      <span>Nosso <span style="color: red">aplicativo</span> remove a roupa de qualquer pessoa +18 em instantes</span>
+      <br><br>
+     <div class="image-container">
+        <img src="https://cdn.xquiz.co/images/d4114b0a-55af-4904-be6b-0287fb425eff" alt="Imagem 2" class="image">
+    </div>
+
+     
+        
+      <div class="button-group">
+        <button onclick="nextScreen('response2', 50)">Continuar</button>
+
+
+      </div>
+    </div>
+
+    <!-- Resposta 2 -->
+    <div id="response2" class="screen hidden">
+      <h1 class="headline">Vamos continuar...</h1>
+      <span>Essa é atriz Fernanda Soares, como você deseja ver ela?</span>
+      <br><br>
+      <img src="https://cdn.xquiz.co/images/2fb6bfe8-05e5-463d-bf46-d45763ce6363" alt="Imagem Resposta 2" class="image">
+      <div class="button-group">
+        <button onclick="nextScreen('screen3', 60)">Remover roupas</button>
+      </div>
+    </div>
+
+    <!-- Tela 3 -->
+    <div id="screen3" class="screen hidden">
+      <h1 class="headline">Aqui está:</h1>
+      <span>Nosso <span style="color: red">aplicativo</span> remove a roupa de qualquer pessoa +18 em instantes</span>
+      <br><br>
+      <div class="image-container">
+      <img src="https://cdn.xquiz.co/images/88004edb-b462-4aeb-81a5-3e70746c4c33" alt="Imagem Resposta 3" class="image">
+      </div>
+      <div class="button-group">
+        <div style="display: flex; gap:4px; width: 100%;">
+        <button style="width: 100%;" onclick="nextScreen('response3', 80)">
+            
+            Continuar </button>
+            
+
+        </div>
+        <button style="background-color: greenyellow; color:black; font-weight: bold;" onclick="nextScreen('response3', 100)">Obter premium 💎</button>
+      </div>
+    </div>
+
+    <!-- Resposta 3 -->
+    <div id="response3" class="screen hidden">
+      <h1 class="headline">Vamos continuar...</h1>
+      <span>Nosso <span style="color: red">aplicativo</span> remove a roupa de qualquer pessoa +18 em instantes</span>
+      <br><br>
+      <img src="https://cdn.xquiz.co/images/d12e81a8-4ae1-4a10-a4f7-08dbe1fddd66" alt="Imagem Resposta 3" class="image">
+      <div class="button-group">
+        <button style="width: 100%;" onclick="nextScreen('screen4', 90)"> Remover roupas </button>
+      </div>
+    </div>
+    <!-- Screen 4 -->
+<div id="screen4" class="screen hidden">
+    <h1 class="headline">Aqui está:</h1>
+    <span>Nosso <span style="color: red">aplicativo</span> remove a roupa de qualquer pessoa +18 em instantes</span>
+    <br><br>
+    <div class="image-container">
+      <img src="https://cdn.xquiz.co/images/8b10add9-c35c-49ec-9861-fb32bb5a6f6b" alt="Imagem Resposta 4" class="image">
+    </div>
+    <div class="button-group">
+      <div style="display: flex; gap:4px; width: 100%;">
+        <button style="width: 100%;" onclick="nextScreen('response4', 100)">
+          Enviar foto
+        </button>
+      </div>
+      <button style="background-color: greenyellow; color:black; font-weight: bold;" onclick="nextScreen('response4', 100)">
+        Obter premium 💎
+      </button>
+    </div>
+  </div>
+  
+  <!-- Resposta 4 -->
+  <div id="response4" class="screen hidden">
+    <h1 class="headline">Experimente já</h1>
+    <span>Nosso <span style="color: red">aplicativo</span> remove a roupa de qualquer pessoa +18 em instantes</span>
+    <br><br>
+    <img style="width: 200px;" src="https://image.winudf.com/v2/image/Y29tLmlkZWxvZ2l4Lm5hc2lyLmluemFtYW0uYXBwZGVtb19zY3JlZW5zaG90c181XzU0OTIyMGU5/screen-5.jpg?h=200&fakeurl=1&type=.jpg" alt="Imagem Resposta 4" class="image">
+    <div class="button-group">
+      <button onclick="alert('Obrigado por participar!')">Experimentar com Amigo(a)</button>
+      <button onclick="alert('Obrigado por participar!')">Experimentar com Famoso(a)</button>
+      <button onclick="alert('Obrigado por participar!')">Experimentar varias Fotos</button>
+      <button style="background-color: greenyellow; color:black; font-weight: bold;" onclick="nextScreen('response4', 100)">
+        Obter premium 💎
+      </button>
+    </div>
+  </div>
+  
+  </div>
+
+  <script>
+    function nextScreen(nextId, progress) {
+      // Atualiza a barra de progresso
+      const progressBar = document.getElementById('stepProgressBar');
+      progressBar.style.width = `${progress}%`;
+
+      // Troca de tela
+      document.querySelectorAll('.screen').forEach(screen => screen.classList.add('hidden'));
+      document.getElementById(nextId).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>
