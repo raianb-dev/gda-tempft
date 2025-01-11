@@ -50,6 +50,7 @@ def webhook_view(request):
                 print("Nenhum dado foi recebido.")  # Caso não haja dados na requisição
             mobile_number = data.get('Customer', {}).get('mobile', None)
             mobile_number = mobile_number.replace('+','')
+            mobile_number = mobile_number.replace('99','9')
             message = """   
 🎉 Parabéns por adquirir o Método Vision Raio-X! 🎉
 
