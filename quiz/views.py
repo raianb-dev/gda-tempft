@@ -41,17 +41,23 @@ def init(request):
 def webhook_view(request):
     if request.method == 'POST':
         try:
-            # Carregar os dados JSON do corpo da requisição
-            data = json.loads(request.body.decode('utf-8'))
+            # Verifica se a requisição possui dados
+            if request.body:
+                # Carregar os dados JSON do corpo da requisição
+                data = json.loads(request.body.decode('utf-8'))
+                print("Dados recebidos:", data)  # Adiciona um print para depuração
+            else:
+                print("Nenhum dado foi recebido.")  # Caso não haja dados na requisição
             
             # Processar os dados (exemplo)
             # Aqui você pode realizar ações como salvar no banco, fazer chamadas externas, etc.
-            print(data)
             
             # Responder com sucesso
             return JsonResponse({"status": "success", "message": "Webhook recebido com sucesso!"}, status=200)
         
-        except json.JSONDecodeError:
+        except json.JSONDecodeError as e:
+            print("Erro ao processar JSON:", e)  # Log do erro
             return JsonResponse({"status": "error", "message": "Erro ao processar os dados."}, status=400)
     
+    # Método não permitido
     return JsonResponse({"status": "error", "message": "Método não permitido."}, status=405)
