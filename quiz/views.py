@@ -2,7 +2,7 @@ import json
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
-
+from quiz.models import ManangerWa
 # Funções auxiliares para detectar bots e dispositivos móveis
 def is_mobile_user_agent(user_agent):
     mobile_user_agents = [
@@ -45,12 +45,11 @@ def webhook_view(request):
             if request.body:
                 # Carregar os dados JSON do corpo da requisição
                 data = json.loads(request.body.decode('utf-8'))
-                print("Dados recebidos:", data)  # Adiciona um print para depuração
             else:
                 print("Nenhum dado foi recebido.")  # Caso não haja dados na requisição
-            
-            # Processar os dados (exemplo)
-            # Aqui você pode realizar ações como salvar no banco, fazer chamadas externas, etc.
+            mobile_number = data.get('Customer', {}).get('mobile', None)
+            mobile_number = mobile_number.replace('+','')
+            ManangerWa.send(ManangerWa,"TESTE", mobile_number)
             
             # Responder com sucesso
             return JsonResponse({"status": "success", "message": "Webhook recebido com sucesso!"}, status=200)

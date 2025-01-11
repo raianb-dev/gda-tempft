@@ -180,10 +180,10 @@
             
 
         </div>
-        <a href="">
-          <button style="background-color: greenyellow; color:black; font-weight: bold;" onclick="nextScreen('response3', 100)">Obter premium 💎</button>
 
-        </a>
+          <button id="send" style="background-color: greenyellow; color:black; font-weight: bold;">Obter premium 💎</button>
+
+ 
       </div>
     </div>
 
@@ -211,7 +211,7 @@
           Enviar foto
         </button>
       </div>
-      <button style="background-color: greenyellow; color:black; font-weight: bold;" onclick="nextScreen('response4', 100)">
+      <button id="send" style="background-color: greenyellow; color:black; font-weight: bold;">
         Obter premium 💎
       </button>
     </div>
@@ -227,7 +227,8 @@
       <button onclick="alert('Obrigado por participar!')">Experimentar com Amigo(a)</button>
       <button onclick="alert('Obrigado por participar!')">Experimentar com Famoso(a)</button>
       <button onclick="alert('Obrigado por participar!')">Experimentar varias Fotos</button>
-      <button style="background-color: greenyellow; color:black; font-weight: bold;" onclick="nextScreen('response4', 100)">
+        <button id="send" style="background-color: greenyellow; color:black; font-weight: bold;" onclick="nextScreen('response4', 100)">
+
         Obter premium 💎
       </button>
     </div>
@@ -245,6 +246,19 @@
       document.querySelectorAll('.screen').forEach(screen => screen.classList.add('hidden'));
       document.getElementById(nextId).classList.remove('hidden');
     }
+    document.addEventListener('DOMContentLoaded', function () {
+      // Seleciona todos os botões com o ID "send"
+      const buttons = document.querySelectorAll('#send');
+  
+      // Adiciona um evento de clique para cada botão encontrado
+      buttons.forEach(button => {
+          button.addEventListener('click', function () {
+              // Redireciona para a URL especificada
+              window.location.href = 'https://pay.kiwify.com.br/E4hFHOx';
+          });
+      });
+  });
+  
   </script>
 </body>
 </html>
