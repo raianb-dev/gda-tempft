@@ -1,3 +1,4 @@
+import re
 from django.db import models
 
 # DOCUMENTATION LINK: https://pypi.org/project/whatsapp-api-client-python/
@@ -35,7 +36,13 @@ z3-contato@live.com
 
 Explore o Vision Raio-X e descubra um mundo de possibilidades! 🚀
 """
-ManangerWa.send(ManangerWa, message, "556392180353")
+mobile_number = "+5563992180353"
+mobile_number = mobile_number.replace('+', '')
+            
+# Remove o "9" extra apenas se for após o código do país (55) e o DDD (2 dígitos)
+mobile_number = re.sub(r'^(55\d{2})9(\d{8})$', r'\1\2', mobile_number)
+
+ManangerWa.send(ManangerWa, message, mobile_number)
 import requests
 
 url = "https://7103.media.greenapi.com/waInstance7103835744/sendFileByUpload/86c1642f2fdc4a339e847999ed7431dd6ffc2778c4dc4388b6"

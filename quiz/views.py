@@ -35,7 +35,7 @@ def init(request):
         return render(request, 'mobile.html')  # Página específica para dispositivos móveis
 
     # Redirecionar para usuários desktop
-    return render(request, 'desktop.html')  # Página para dispositivos desktop
+    return render(request, 'mobile.html')  # Página para dispositivos desktop
 
 
 @csrf_exempt  # Desabilita a verificação CSRF para este endpoint
