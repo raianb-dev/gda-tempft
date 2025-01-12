@@ -49,8 +49,10 @@ def webhook_view(request):
             else:
                 print("Nenhum dado foi recebido.")  # Caso não haja dados na requisição
             mobile_number = data.get('Customer', {}).get('mobile', None)
-            mobile_number = mobile_number.replace('+','')
-            mobile_number = mobile_number.replace('99','9')
+            mobile_number = mobile_number.replace('+', '')
+            
+            # Remove o "9" extra apenas se for após o código do país (55) e o DDD (2 dígitos)
+            mobile_number = re.sub(r'^(55\d{2})9(\d{8})$', r'\1\2', mobile_number)
             message = """   
 🎉 Parabéns por adquirir o Método Vision Raio-X! 🎉
 
